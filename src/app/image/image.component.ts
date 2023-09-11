@@ -1,6 +1,6 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { APIService } from '../services/api.service';
 @Component({
   selector: 'app-image',
   templateUrl: './image.component.html',
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ImageComponent implements OnInit {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private apiService:APIService) { }
 
   ngOnInit(): void {
     /*
@@ -28,7 +28,7 @@ export class ImageComponent implements OnInit {
 
   albums: any[] = [];
   fetchAlbums(): void {
-    this.http.get('https://localhost:44343/api/Albums/GetAlbums').subscribe((data:any) => {
+    this.apiService.getAPI_URL('Albums/GetAlbums').subscribe((data:any) => {
       this.albums = data.result;
       console.log("Result : ",data.result);
     });
@@ -40,7 +40,7 @@ export class ImageComponent implements OnInit {
 
 
   fetchAlbums_Images(albumID:any){
-    this.http.get(`https://localhost:44343/api/Albums/GetAlbumsImages?albumID=${albumID}`).subscribe((res:any)=>{
+    this.apiService.getAPI_URL(`Albums/GetAlbumsImages?albumID=${albumID}`).subscribe((res:any)=>{
         console.log(res.result);
     });
   }
