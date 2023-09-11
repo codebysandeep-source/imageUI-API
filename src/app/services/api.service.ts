@@ -6,12 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class APIService {
 
-  constructor(private http:HttpClient) { }
+  baseUrl = "";
+  constructor(private http:HttpClient) {
+    this.baseUrl = (window as any).apiBaseUrl;
+   }
 
-  apiUrl = "https://localhost:44343/api/";
-
-  public getAPI_URL(url:any){
-    return this.http.get(`${this.apiUrl}${url}`);
+  public getAPI_URL(apiUrl:any){
+    return this.http.get(`${this.baseUrl}${apiUrl}`);
   }
 
 }
