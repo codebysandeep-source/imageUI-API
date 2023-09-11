@@ -1,0 +1,4 @@
+<div class="alert" *ngFor="let album of albums" (click)="fetchAlbums_Images(album.albumID)" style="cursor: pointer;">
+  <h2>{{ album.albumName }}</h2>
+  <img [src]="getImageDataUrl(album.albumImagePath)" class="card" width="300"  alt="Album Image">
+</div>
